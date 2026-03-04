@@ -3,21 +3,14 @@ package main
 import (
 	"net/http"
 
-	"github.com/igorbarzakh/user-service/internal/health"
-	"github.com/igorbarzakh/user-service/internal/platform/http/middleware"
+	apphttp "github.com/igorbarzakh/user-service/internal/http"
 	"github.com/igorbarzakh/user-service/internal/platform/logger"
-	"github.com/igorbarzakh/user-service/internal/user"
 )
 
 func main() {
 	log := logger.New()
 
-	mux := http.NewServeMux()
-	
-	mux.HandleFunc("/users", user.Handler)
-	mux.HandleFunc("/health", health.Handler)
-
-	handler := middleware.Logging(mux)
+	handler := apphttp.NewRouter()
 
 	log.Println("server started on :8080")
 
