@@ -1,6 +1,10 @@
 package user
 
 type User struct {
-	ID   int
-	Name string
+	ID   string    `json:"id"`
+	Name string `json:"name"`
+}
+
+type CreateUserRequest struct {
+	Name string `json:"name"`
 }
