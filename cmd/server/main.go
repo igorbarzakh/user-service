@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/igorbarzakh/user-service/internal/health"
 	"github.com/igorbarzakh/user-service/internal/platform/http/middleware"
 	"github.com/igorbarzakh/user-service/internal/platform/logger"
 	"github.com/igorbarzakh/user-service/internal/user"
@@ -14,6 +15,7 @@ func main() {
 	mux := http.NewServeMux()
 	
 	mux.HandleFunc("/users", user.Handler)
+	mux.HandleFunc("/health", health.Handler)
 
 	handler := middleware.Logging(mux)
 
